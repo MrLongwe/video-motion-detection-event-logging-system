@@ -1,11 +1,13 @@
 """
 main.py
 Application entry point for the Video Motion Detection Event Logging System.
-Starts the video capture from the webcam and displays the live feed in a window.
+Starts the video capture from the webcam and runs motion detection.
 
 """
 
 import cv2
+# import the MotionDetector class from motion_detector.py
+from motion_detector import MotionDetector
 
 def main():
     # Opens or connects to the webcam
@@ -15,7 +17,10 @@ def main():
         print("Error: Could not access the camera")
         return
     
-    print("Camera accessed successfully. Press ESC to exit")
+    # initialize the motion detector 
+    detector = MotionDetector()
+
+    print("System started. Press ESC to exit")
     
     while True:
         # Capture the latest frame from the camera
@@ -25,6 +30,20 @@ def main():
             print("Error: Could not read frame")
             break
         
+        # Detect motion in the current frame
+        frame, motion_detected = detector.detect(frame)
+
+        # Display the frame with motion detection results
+        if motion_detected:
+            cv2.putText(
+                frame,
+                "MOTION DETECTED!",
+                (10, 30),
+                cv2.FONT_HERSHEY_SIMPLEX, 1,
+                (0, 0, 255),
+                2
+            )
+
         # Display live video feed
         cv2.imshow('Video Motion Detection System', frame)
         
