@@ -1,3 +1,10 @@
+"""
+main.py
+Application entry point for the Video Motion Detection Event Logging System.
+Starts the video capture from the webcam and displays the live feed in a window.
+
+"""
+
 import cv2
 
 def main():
