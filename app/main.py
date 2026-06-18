@@ -13,7 +13,7 @@ from config import VIDEO_SOURCE
 
 def main():
     # load sample video file for testing
-    cap = cv2.VideoCapture("VIDEO_SOURCE")
+    cap = cv2.VideoCapture(VIDEO_SOURCE)
     if not cap.isOpened():
         print("Error: Could not access the video file")
         return
