@@ -8,6 +8,7 @@ Starts the video capture from the webcam and runs motion detection.
 import cv2
 # import the MotionDetector class from motion_detector.py
 from motion_detector import MotionDetector
+from event_logger import EventLogger
 
 def main():
     # Opens or connects to the webcam
@@ -19,6 +20,8 @@ def main():
     
     # initialize the motion detector 
     detector = MotionDetector()
+    # initialize the event logger
+    logger = EventLogger()
 
     print("System started. Press ESC to exit")
     
@@ -35,11 +38,16 @@ def main():
 
         # Display the frame with motion detection results
         if motion_detected:
+
+            # save the motion detected frame
+            logger.save_event(frame)
+            
             cv2.putText(
                 frame,
                 "MOTION DETECTED!",
-                (10, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 1,
+                (10, 40),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
                 (0, 0, 255),
                 2
             )
