@@ -9,13 +9,13 @@ import cv2
 # import the MotionDetector class from motion_detector.py
 from motion_detector import MotionDetector
 from event_logger import EventLogger
+from config import VIDEO_SOURCE
 
 def main():
-    # Opens or connects to the webcam
-    cap = cv2.VideoCapture(0)  
-
+    # load sample video file for testing
+    cap = cv2.VideoCapture("VIDEO_SOURCE")
     if not cap.isOpened():
-        print("Error: Could not access the camera")
+        print("Error: Could not access the video file")
         return
     
     # initialize the motion detector 
