@@ -36,13 +36,20 @@ def main():
 
         # add a timestamp to the frame
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cv2.rectangle(
+            frame,
+            (5, 0),
+            (280, 35),
+            (0, 0, 0),
+            -1
+        )
         cv2.putText(
             frame,
             timestamp,
-            (10, frame.shape[0] - 10),
+            (10, 25),
             cv2.FONT_HERSHEY_SIMPLEX,
-            0.6,
-            (255, 255, 255),
+            0.7,
+            (0, 255, 0),
             2
         )
         
