@@ -10,6 +10,7 @@ import cv2
 from motion_detector import MotionDetector
 from event_logger import EventLogger
 from config import VIDEO_SOURCE
+from datetime import datetime
 
 def main():
     # load sample video file for testing
@@ -32,6 +33,18 @@ def main():
         if not ret:
             print("Error: Could not read frame")
             break
+
+        # add a timestamp to the frame
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cv2.putText(
+            frame,
+            timestamp,
+            (10, frame.shape[0] - 10),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            (255, 255, 255),
+            2
+        )
         
         # Detect motion in the current frame
         frame, motion_detected = detector.detect(frame)
